@@ -5,10 +5,21 @@ function useGitHubRepos(username) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  });
+    const getRepos = async () => {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${username}/repos`
+        );
+        const data = await response.json();
+        setRepos(data);
+      } catch (error) {
+        console.error("Error fetching GitHub repos:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getRepos();
+  }, [username]);
 
   return [repos, isLoading];
 }
@@ -37,3 +48,20 @@ function GitHubRepos({ username }) {
 }
 
 export default GitHubRepos;
+
+class ToggleVisibility extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { visible: true };
+    this.setVisibility = this.setVisibility.bind(this);
+  }
+  setVisibility(visible) {
+    this.setState({ visible });
+  }
+}
+
+changeVolume = (e) => {
+  this.setState({ volume: e.target.value });
+};
+
+<input onChange={() => this.changeVolume(e)} />;
