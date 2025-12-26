@@ -16,6 +16,10 @@ function ClockContainer() {
 function Clock() {
   const [time, setTime] = useState(new Date());
 
+  function tick() {
+    setTime(new Date());
+  }
+
   useEffect(() => {
     const timerID = setInterval(() => tick(), 1000);
     return () => {
@@ -24,11 +28,7 @@ function Clock() {
     };
   }, []);
 
-  function tick() {
-    setTime(new Date());
-  }
-
-  return <div>{time.toLocaleTimeString()}</div>;
+  return <div data-testid="clock">{time.toLocaleTimeString()}</div>;
 }
 
 export default ClockContainer;

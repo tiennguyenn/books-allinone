@@ -64,4 +64,4 @@ changeVolume = (e) => {
   this.setState({ volume: e.target.value });
 };
 
-<input onChange={() => this.changeVolume(e)} />;
+<input onChange={() => this.changeVolume()} />;
