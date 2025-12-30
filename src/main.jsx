@@ -9,6 +9,6 @@ import GitHubRepos from "./GitHubRepos.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <GitHubRepos username="otocat" />
+    <ClockContainer />
   </StrictMode>
 );
