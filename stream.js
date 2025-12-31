@@ -3,7 +3,8 @@ import { promises as fs } from "fs";
 
 const app = http.createServer();
 app.on("request", async (req, res) => {
-  const body = await fs.readFile("./README.md");
+  const file = process.cwd() + "/README.md";
+  const body = await fs.readFile(file);
   res.end(body);
 });
 
